@@ -4,93 +4,87 @@ public class UsuarioModel {
 	
 	private int    id;
 	private String nombreUsuario;
-	private long   telUaster;
-	private String correoUaster;
+	private String   telUsuario;
+	private String correoUsuario;
 	private String contrasena;
+	private static int total = 0;
 
 	//constructor vacio
 	public UsuarioModel() {
-		
+		UsuarioModel.total++;
+		id = UsuarioModel.total;
 	}
-
-
-	//constructor sin id
-	public UsuarioModel(String nombreUsuario, long telUaster, String correoUaster, String contrasena) {
-		super();
-		this.nombreUsuario = nombreUsuario;
-		this.telUaster = telUaster;
-		this.correoUaster = correoUaster;
-		this.contrasena = contrasena;
-	}
-	
-	
-	public UsuarioModel(int id, String nombreUsuario, long telUaster, String correoUaster, String contrasena) {
+	 //constructor sin id, por el auroincremental
+	public UsuarioModel(String nombreUsuario, String telUsuario, String correoUsuario, String contrasena) {
 		super();
 		this.id = id;
 		this.nombreUsuario = nombreUsuario;
-		this.telUaster = telUaster;
-		this.correoUaster = correoUaster;
+		this.telUsuario = telUsuario;
+		this.correoUsuario = correoUsuario;
 		this.contrasena = contrasena;
+		UsuarioModel.total++;
+		id = UsuarioModel.total;
 	}
-
-	//getters and setter
+	
+	//Constructor con Id
+	public UsuarioModel(int id, String nombreUsuario, String telUsuario, String correoUsuario, String contrasena) {
+		super();
+		this.id = id;
+		this.nombreUsuario = nombreUsuario;
+		this.telUsuario = telUsuario;
+		this.correoUsuario = correoUsuario;
+		this.contrasena = contrasena;
+		UsuarioModel.total++;
+		id = UsuarioModel.total;
+	}
+	
+	
+	
 	public int getId() {
 		return id;
 	}
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
-
-
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
-
-
-	public long getTelUaster() {
-		return telUaster;
+	public String getTelUsuario() {
+		return telUsuario;
 	}
-
-
-	public void setTelUaster(long telUaster) {
-		this.telUaster = telUaster;
+	public void setTelUsuario(String telUsuario) {
+		this.telUsuario = telUsuario;
 	}
-
-
-	public String getCorreoUaster() {
-		return correoUaster;
+	public String getCorreoUsuario() {
+		return correoUsuario;
 	}
-
-
-	public void setCorreoUaster(String correoUaster) {
-		this.correoUaster = correoUaster;
+	public void setCorreoUsuario(String correoUsuario) {
+		this.correoUsuario = correoUsuario;
 	}
-
-
 	public String getContrasena() {
 		return contrasena;
 	}
-
-
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-
-
+	public static int getTotal() {
+		return total;
+	}
+	public static void setTotal(int total) {
+		UsuarioModel.total = total;
+	}
 	@Override
 	public String toString() {
-		return "UsuarioModel [id=" + id + ", nombreUsuario=" + nombreUsuario + ", telUaster=" + telUaster
-				+ ", correoUaster=" + correoUaster + ", contrasena=" + contrasena + "]";
+		return "UsuarioModel [id=" + id + ", nombreUsuario=" + nombreUsuario + ", telUsuario=" + telUsuario
+				+ ", correoUsuario=" + correoUsuario + ", contrasena=" + contrasena + "]";
 	}
 	
+
 	
 	
+	//toString
 	
 }
