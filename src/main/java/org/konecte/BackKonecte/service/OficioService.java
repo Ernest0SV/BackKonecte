@@ -20,6 +20,7 @@ public class OficioService {
 		return list;
 	}
 	
+	
 	public OficioModel getOficio(int oficioId) {
 		OficioModel tmpOfi = null;
 		for (OficioModel oficio : list) {
@@ -67,5 +68,5 @@ public class OficioService {
 		return tmpOfi;
 	}
 
-	
+
 }
