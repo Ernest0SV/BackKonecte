@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MasterRepository extends JpaRepository <MasterModel, Long>  {
+public interface MasterRepository extends JpaRepository<MasterModel, Long> {
 	Optional<MasterModel> findByEmail(String email);
-}
+	
+}//Interface MasterModelRepository

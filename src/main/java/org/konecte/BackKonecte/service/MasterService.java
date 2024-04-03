@@ -4,23 +4,22 @@ import java.util.ArrayList;
 
 
 import org.konecte.BackKonecte.model.MasterModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 
 public class MasterService {
 	
-	public final ArrayList<MasterModel> list = new ArrayList<MasterModel>();
-	
-	
-	
-	public MasterService() {
-		list.add( new MasterModel("Ernesto Sepulveda", "Calle 123", "5545400686", "ernesto@hotmail.com", "fotoErnestoBASE64", "Contrasena1$", "Soy una descripcion","Electricista") );
-		list.add( new MasterModel("Abraham Ruiz", "Calle 456", "5467895649", "abraham@hotmail.com", "fotoAbrahamBASE64", "Contrasena1$", "Soy una descripcion","Plomero") );
-		list.add( new MasterModel("Eduardo Diaz", "Oriente", "6787456790", "eduardo@hotmail.com", "fotoEduardoBASE64", "Contrasena1$", "Soy una descripcion","Carpintero") );
-		list.add( new MasterModel("Joel Solis", "Oriente 234", "4567892345", "joel@hotmail.com", "fotoJoelBASE64", "Contrasena1$", "Soy una descripcion","Plomero") );
-		
-		
+	//public final ArrayList<MasterModel> list = new ArrayList<MasterModel>();
+	public final MasterRepository masterRepository;
+	@Autowired
+	public MasterService(MasterRepository masterRepository) {
+		//list.add( new MasterModel("Ernesto Sepulveda", "Calle 123", "5545400686", "ernesto@hotmail.com", "fotoErnestoBASE64", "Contrasena1$", "Soy una descripcion","Electricista") );
+		//list.add( new MasterModel("Abraham Ruiz", "Calle 456", "5467895649", "abraham@hotmail.com", "fotoAbrahamBASE64", "Contrasena1$", "Soy una descripcion","Plomero") );
+		//list.add( new MasterModel("Eduardo Diaz", "Oriente", "6787456790", "eduardo@hotmail.com", "fotoEduardoBASE64", "Contrasena1$", "Soy una descripcion","Carpintero") );
+		//list.add( new MasterModel("Joel Solis", "Oriente 234", "4567892345", "joel@hotmail.com", "fotoJoelBASE64", "Contrasena1$", "Soy una descripcion","Plomero") );
+		this.masterRepository = masterRepository;		
 	}//constructor
 	
 
