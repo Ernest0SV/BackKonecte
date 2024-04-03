@@ -20,7 +20,7 @@ public class OficioController {
 	
 	private final OficioService oficioService;
 	@Autowired
-	public OficioController(OficioService masterService){
+	public OficioController(OficioService oficioService){
 		this.oficioService = oficioService;
 	}
 	
