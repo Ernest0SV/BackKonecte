@@ -15,11 +15,11 @@ public class OficioService {
 		list.add(new OficioModel(3,"Albañileria"));
 	}
 	
-	//constructor
-	public ArrayList<OficioModel>getAllUsuarios(){
+	
+	public ArrayList<OficioModel> getAllOficios() {
 		return list;
-	}//get all oficios
-
+	}
+	
 	public OficioModel getOficio(int oficioId) {
 		OficioModel tmpOfi = null;
 		for (OficioModel oficio : list) {
@@ -66,4 +66,6 @@ public class OficioService {
 		}
 		return tmpOfi;
 	}
+
+	
 }

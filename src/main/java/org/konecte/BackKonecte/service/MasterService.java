@@ -25,7 +25,6 @@ public class MasterService {
 	
 
 	public ArrayList<MasterModel> getAllMasters() {
-		// TODO Auto-generated method stub
 		return list;
 	}//get all masters
 
