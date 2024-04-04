@@ -1,49 +1,65 @@
 package org.konecte.BackKonecte.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="usuario")
 public class UsuarioModel {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="id", unique=true, nullable=false)	
 	
-	private int    id;
+	private Long id;
+	@Column(nullable=false)
 	private String nombreUsuario;
+	@Column(nullable=false)
 	private String   telUsuario;
+	@Column(nullable=false)
 	private String correoUsuario;
+	@Column(nullable=false)
 	private String contrasena;
-	private static int total = 0;
+	// private static int total = 0;
 
 	//constructor vacio
 	public UsuarioModel() {
-		UsuarioModel.total++;
-		id = UsuarioModel.total;
+	//	UsuarioModel.total++;
+	//	id = UsuarioModel.total;
 	}
 	 //constructor sin id, por el auroincremental
 	public UsuarioModel(String nombreUsuario, String telUsuario, String correoUsuario, String contrasena) {
 		super();
-		this.id = id;
+		// this.id = id;
+		
 		this.nombreUsuario = nombreUsuario;
 		this.telUsuario = telUsuario;
 		this.correoUsuario = correoUsuario;
 		this.contrasena = contrasena;
-		UsuarioModel.total++;
-		id = UsuarioModel.total;
+		//UsuarioModel.total++;
+		//id = UsuarioModel.total;
 	}
 	
-	//Constructor con Id
-	public UsuarioModel(int id, String nombreUsuario, String telUsuario, String correoUsuario, String contrasena) {
+	/* Constructor con Id
+	public UsuarioModel(Long id, String nombreUsuario, String telUsuario, String correoUsuario, String contrasena) {
 		super();
-		this.id = id;
+		// this.id = id;
 		this.nombreUsuario = nombreUsuario;
 		this.telUsuario = telUsuario;
 		this.correoUsuario = correoUsuario;
 		this.contrasena = contrasena;
-		UsuarioModel.total++;
-		id = UsuarioModel.total;
-	}
+		//UsuarioModel.total++;
+		//id = UsuarioModel.total;
+	} */
 	
 	
-	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getNombreUsuario() {
@@ -70,12 +86,14 @@ public class UsuarioModel {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-	public static int getTotal() {
-		return total;
-	}
-	public static void setTotal(int total) {
+	
+	//public static int getTotal() {
+	//	return total;
+	//}
+/*	public static void setTotal(long total) {
 		UsuarioModel.total = total;
-	}
+	} */
+	
 	@Override
 	public String toString() {
 		return "UsuarioModel [id=" + id + ", nombreUsuario=" + nombreUsuario + ", telUsuario=" + telUsuario

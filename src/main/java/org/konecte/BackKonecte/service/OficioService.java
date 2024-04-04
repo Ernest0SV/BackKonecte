@@ -1,72 +1,72 @@
 package org.konecte.BackKonecte.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
+import org.BackKonecte.Repository.OficioRepository;
+import org.konecte.BackKonecte.model.MasterModel;
 import org.konecte.BackKonecte.model.OficioModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class OficioService {
 	
-	public final ArrayList<OficioModel> list = new ArrayList<OficioModel>();
+	public final OficioRepository oficioRepository;
+	@Autowired
+	public OficioService(OficioRepository oficioRepository) {
+		//list.add(new OficioModel(1,"Carpinteria"));
+		//list.add(new OficioModel(2,"Satreria"));
+		//list.add(new OficioModel(3,"Albañileria"));
+		this.oficioRepository = oficioRepository;
+		
+	}//constructor
 	
-	public OficioService() {
-		list.add(new OficioModel(1,"Carpinteria"));
-		list.add(new OficioModel(2,"Satreria"));
-		list.add(new OficioModel(3,"Albañileria"));
-	}
-	
-	
-	public ArrayList<OficioModel> getAllOficios() {
-		return list;
-	}
-	
-	
-	public OficioModel getOficio(int oficioId) {
-		OficioModel tmpOfi = null;
-		for (OficioModel oficio : list) {
-			if(oficio.getId() == oficioId) {
-				tmpOfi=oficio;
-				break;
-			}//if ==
-		}//foreach
-		return tmpOfi;
-	}//get 1 oficio
 
-	//POST
-	public OficioModel addOficio(OficioModel oficio) {
-		OficioModel tmpOfi=null;
-		if(list.add(oficio)) {
-			tmpOfi=oficio;
-		}
-		return tmpOfi;
-	}
+	public List<OficioModel> getAllOficios() {
+		return oficioRepository.findAll();
+	}// get all oficios
 	
-	//PUT-UPDATE
-	public OficioModel updateOficio(int oficioId, String nombreOficio) {
+	public OficioModel getOficioModel (String oficioId) {
+		return oficioRepository.findById(oficioId).orElseThrow(
+				()-> new IllegalArgumentException("El oficio con el id ["+
+						oficioId + "] no existe")
+				);
+	}//get 1 oficio
+	
+	public OficioModel deleteOficioModel (String oficioId) {
 		OficioModel tmpOfi = null;
-		for (OficioModel oficio: list) {
-			if(oficio.getId( )== oficioId) {
-				tmpOfi=oficio;
+		if(oficioRepository.existsById(oficioId)) {
+			tmpOfi = oficioRepository.findById(oficioId).get();
+			oficioRepository.deleteById(oficioId);
+		}//if
+		return tmpOfi;
+		}//delete
+	
+	public OficioModel addOficioModel(OficioModel oficio) {
+		Optional<OficioModel> tmpOfi= oficioRepository.findById(oficio.getNombreOficio());		
+		if (tmpOfi.isEmpty()) {
+			return oficioRepository.save(oficio);
+		}else {
+			System.out.println("Ya existe el master con el correo [" +
+		oficio.getNombreOficio() + "]");
+			return null;
+		}//if
+	}// add/post 
+	
+	public OficioModel updateOficio(String oficioId, String nombreOficio) {
+		OficioModel oficio = null;
+		//for (OficioModel oficio: list) {
+			if(oficioRepository.existsById(oficioId)){
+				oficio = oficioRepository.findById(oficioId).get();
+				
 				if(nombreOficio.length()!=0)oficio.setNombreOficio(nombreOficio);
 				
-				tmpOfi=oficio;
-			}break;
-		}
-		return tmpOfi;
-	}
+				//tmpOfi=oficio;
+			//}break;
+		}//if
+		return oficio;
+	}//put 
 	
-	//DELETE
-	public OficioModel deleteOficio(int oficioId) {
-		OficioModel tmpOfi = null;
-		for (OficioModel oficio: list) {
-			if(oficio.getId()==oficioId) {
-				tmpOfi=oficio;
-				list.remove(tmpOfi);
-				break;
-			}
-		}
-		return tmpOfi;
-	}
-
 
 }

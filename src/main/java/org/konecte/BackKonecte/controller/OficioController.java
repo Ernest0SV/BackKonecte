@@ -1,7 +1,6 @@
 package org.konecte.BackKonecte.controller;
-
-import java.util.ArrayList;
-
+//import java.util.ArrayList;
+import java.util.List;
 import org.konecte.BackKonecte.model.OficioModel;
 import org.konecte.BackKonecte.service.OficioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,33 +24,33 @@ public class OficioController {
 	}
 	
 	@GetMapping
-	public ArrayList<OficioModel>getAllOficios(){
+	public List <OficioModel>getAllOficios(){
 		return oficioService.getAllOficios();
 	}
 	
 	//GET
 	//Trae solo un oficio
 	@GetMapping (path="{oficioId}")
-	public OficioModel getOficio(@PathVariable("oficioId")int oficioId) {
-		return oficioService.getOficio(oficioId);
+	public OficioModel getOficio(@PathVariable("oficioId")String oficioId) {
+		return oficioService.getOficioModel(oficioId);
 	}
 	
 	//POST
 	@PostMapping
 	public OficioModel addOficio(@RequestBody OficioModel oficio) {
-		return oficioService.addOficio(oficio);
+		return oficioService.addOficioModel(oficio);
 	}//postOficio
 	
 	//PUT
 	@PutMapping(path="{oficioId}")//http://localhost:8080/api/oficios/1
-	public OficioModel updateOficio(@PathVariable("oficioId")int oficioId,
+	public OficioModel updateOficio(@PathVariable("oficioId")String oficioId,
 	@RequestBody OficioModel oficio	) {
 		return oficioService.updateOficio(oficioId, oficio.getNombreOficio());
 }
 	//DELETE
 	@DeleteMapping (path="{masterId}")
-	public OficioModel deleteOficio(@PathVariable("oficioId")int oficioId) {
-		return oficioService.deleteOficio(oficioId);
+	public OficioModel deleteOficio(@PathVariable("oficioId")String oficioId) {
+		return oficioService.deleteOficioModel(oficioId);
 	}
 	
 }

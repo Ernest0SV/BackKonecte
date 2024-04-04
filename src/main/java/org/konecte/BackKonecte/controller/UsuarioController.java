@@ -1,10 +1,8 @@
 package org.konecte.BackKonecte.controller;
 
 import java.util.ArrayList;
-
-import org.konecte.BackKonecte.model.MasterModel;
+import java.util.List;
 import org.konecte.BackKonecte.model.UsuarioModel;
-import org.konecte.BackKonecte.service.MasterService;
 import org.konecte.BackKonecte.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +27,7 @@ public class UsuarioController {
 	
 	//Para traer a todos los usuarios
 	@GetMapping		// http://localhost:8080/api/usuarios/
-	public ArrayList<UsuarioModel> getAllUsuarios(){
+	public List<UsuarioModel> getAllUsuarios(){
 		return usuarioService.getAllUsuarios();
 	}
 	
@@ -37,31 +35,31 @@ public class UsuarioController {
 	//GET
 	//este get es para traer un solo master
 	@GetMapping (path="{usuarios}") // http://localhost:8080/api/usuarios/1
-	public UsuarioModel getMaster(@PathVariable("usuarios") int userId) {
-		return usuarioService.getUsuario(userId);
+	public UsuarioModel getMaster(@PathVariable("usuarios") Long userId) {
+		return usuarioService.getUsuarioModel(userId);
 	}//get product
 	
 	//POST
 	@PostMapping
 	public UsuarioModel addUsuario(@RequestBody UsuarioModel usuario) {
-		return usuarioService.addUsuario(usuario);
+		return usuarioService.addUsuarioModel(usuario);
 	}//postMaster
 		
 		
 	//PUT 2
 	@PutMapping(path="{usuarioId}")  //http://localhost:8080/api/usuarios/1
-	public UsuarioModel updateUsuario(@PathVariable("usuarioId") int usuarioId,
+	public UsuarioModel updateUsuario(@PathVariable("usuarioId") Long usuarioId,
 	@RequestBody UsuarioModel usuario) {
 					
 	//El put es similar al update
-	return usuarioService.updateUsuario(usuarioId, usuario.getNombreUsuario(), //Regresa todos los datos que previamente declare en el archivo de controller
+	return usuarioService.updateUsuarioModel(usuarioId, usuario.getNombreUsuario(), //Regresa todos los datos que previamente declare en el archivo de controller
 	usuario.getTelUsuario(),usuario.getCorreoUsuario(),usuario.getContrasena());
 	}//put master
 		
 		
 	//DELETE
 	@DeleteMapping (path="{usuarioId}") // http://localhost:8080/api/masters/1
-	public UsuarioModel deleteUsuario(@PathVariable("usuarioId") int usuarioId) {
-	return usuarioService.deleteUsuario(usuarioId);
+	public UsuarioModel deleteUsuario(@PathVariable("usuarioId") Long usuarioId) {
+	return usuarioService.deleteUsuarioModel(usuarioId);
 	}//delete master
 }

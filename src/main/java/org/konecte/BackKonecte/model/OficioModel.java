@@ -1,21 +1,36 @@
 package org.konecte.BackKonecte.model;
 
-public class OficioModel {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	private int id;
+@Entity
+@Table(name="oficio")
+public class OficioModel {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="id", unique=true, nullable=false)
+	private Long id;
+	@Column(nullable=false)
 	private String nombreOficio;
 
-	public OficioModel(int id, String nombreOficio) {
+	public OficioModel(long id, String nombreOficio) {
 		super();
 		this.id = id;
 		this.nombreOficio = nombreOficio;
 	}//constructor
+	
+	public OficioModel() {}//constructor vacio
+	
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
