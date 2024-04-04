@@ -1,8 +1,9 @@
 package org.konecte.BackKonecte.service;
 
-import java.util.ArrayList;
-
-
+//import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.BackKonecte.Repository.MasterRepository;
 import org.konecte.BackKonecte.model.MasterModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 
 public class MasterService {
-	
 	//public final ArrayList<MasterModel> list = new ArrayList<MasterModel>();
 	public final MasterRepository masterRepository;
 	@Autowired
@@ -23,49 +23,81 @@ public class MasterService {
 	}//constructor
 	
 
-	public ArrayList<MasterModel> getAllMasters() {
-		return list;
+	public List <MasterModel> getAllMasters() {
+		return masterRepository.findAll();
 	}//get all masters
-
 	
-	public MasterModel getMaster(int masterId) {
+	public MasterModel getMasterModel (Long masterId) {
+		return masterRepository.findById(masterId).orElseThrow(
+				()-> new IllegalArgumentException("El master con el id ["+
+						masterId + "] no existe")
+				);
+	}// get master
+
+	/*public MasterModel getMaster(Long masterId) {
 		MasterModel tmpMast = null;
-		for (MasterModel master : list) {
+		for (masterRepository.existsById(masterId) master : list) {
 			if(master.getId() == masterId){
 				tmpMast=master;
 				break;
 			}//if ==
 		}//foreach
 		return tmpMast;
-	}//get 1 master
-
-	
-	
-	public MasterModel getMasterByOficio(String oficio) {
+	}//get master
+/*	public MasterModel getMasterByOficio(String oficio) {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	} */
 	
-	
-	
-	
-	//POST
-	public MasterModel addMaster(MasterModel master) {
+/*		public MasterModel deleteMaster(int masterId) {		
+			MasterModel tmpMast = null;
+			for (MasterModel master : list) {
+				if(master.getId() == masterId){
+					tmpMast=master;
+					list.remove(tmpMast); // borra el master en la lista
+					break;
+				}//if ==
+			}//foreach
+			return tmpMast;
+		} */ //deleteMaster
+
+	public MasterModel deleteMasterModel (Long masterId) {
+		MasterModel tmpMaster = null;
+		if(masterRepository.existsById(masterId) ) {
+			tmpMaster = masterRepository.findById(masterId).get();
+			masterRepository.deleteById(masterId);
+		}//if
+		return tmpMaster;
+	}// deleteMaster
+		
+		
+/*	public MasterModel addMaster(MasterModel master) {
 		MasterModel tmpMast=null;
 		if(list.add(master)) {
 			tmpMast=master;
 		}//if
 		return tmpMast;
-	}
+	} *///post
 	
+	public MasterModel addMasterModel (MasterModel master) {
+		Optional<MasterModel> tmpMaster= masterRepository.findByEmail(master.getCorreoMaster());
+		if (tmpMaster.isEmpty()) {
+			return masterRepository.save(master);
+		}else {
+			System.out.println("Ya existe el master con el correo [" +
+		master.getCorreoMaster() + "]");
+			return null;
+		}// if
+	}// add/put product
 	
 	//PUT-UPDATE
-	public MasterModel updateMaster(int masterId, String nombreMaster, String domicilioMaster, String telMaster,
+	public MasterModel updateMasterMoodel(Long masterId, String nombreMaster, String domicilioMaster, String telMaster,
 			String correoMaster, String fotoMaster, String contrasena, String descripcion, String oficio) {
-		MasterModel tmpMast = null;
-		for (MasterModel master : list) {
-			if(master.getId() == masterId){
-				tmpMast=master;
+		MasterModel master = null;
+		//for (MasterModel master : list) {
+			if(masterRepository.existsById(masterId)){
+				master = masterRepository.findById(masterId).get();
+				
 				if(nombreMaster.length()!=0) master.setNombreMaster(nombreMaster);
 				if(domicilioMaster.length()!=0) master.setDomicilioMaster(domicilioMaster);
 				if(telMaster.length()!=0) master.setTelMaster(telMaster);
@@ -75,30 +107,12 @@ public class MasterService {
 				if(descripcion.length()!=0) master.setDescripcion(descripcion);
 				if(oficio.length()!=0) master.setOficio(oficio);
 				
-			
-				tmpMast=master;
-				break;
+				// tmpMast=master;
+				//break;
 			}//if ==
-		}//foreach
-		return tmpMast;
+		//}//foreach
+		return master;
 	}
 
 	
-	//DELETE
-	public MasterModel deleteMaster(int masterId) {
-		MasterModel tmpMast = null;
-		for (MasterModel master : list) {
-			if(master.getId() == masterId){
-				tmpMast=master;
-				list.remove(tmpMast); // borra el master en la lista
-				break;
-			}//if ==
-		}//foreach
-		return tmpMast;
-	}
-	
-	
-	
-	
-	
-}
+}// class MasterService

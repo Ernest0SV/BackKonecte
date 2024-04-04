@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MasterRepository extends JpaRepository<MasterModel, Long> {
-	Optional<MasterModel> findByEmail(String email);
+	Optional<MasterModel > findByEmail(String email);
 	
 }//Interface MasterModelRepository
