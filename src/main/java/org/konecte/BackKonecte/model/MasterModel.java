@@ -1,29 +1,39 @@
 package org.konecte.BackKonecte.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+//Pojo agregar
+@Entity
+@Table(name="master")
 public class MasterModel {
-	
-	
-	private int    id;
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="id", unique=true, nullable=false)
+
+	private Long id;
+	@Column(nullable=false)
 	private String nombreMaster;
+	@Column(nullable=false)
 	private String domicilioMaster;
+	@Column(nullable=false)
 	private String   telMaster;
+	@Column(nullable=false)
 	private String correoMaster;
+	@Column(nullable=false)
 	private String fotoMaster;
+	@Column(nullable=false)
 	private String contrasena;
+	@Column(nullable=false)
 	private String descripcion;
+	@Column(nullable=false)
 	private String oficio;
-	private static int total=0;
 	
-	
-	//constructor vacio
-	public MasterModel() {
-		
-		MasterModel.total++;
-		id = MasterModel.total;		
-		
-	}
-	
+
 	//constructor sin id, por el autoincremental	
 	public MasterModel(String nombreMaster, String domicilioMaster, String telMaster, String correoMaster,
 			String fotoMaster, String contrasena, String descripcion, String oficio) {
@@ -36,36 +46,36 @@ public class MasterModel {
 		this.contrasena = contrasena;
 		this.descripcion = descripcion;
 		this.oficio = oficio;
-		MasterModel.total++;
-		id = MasterModel.total;	
-	}
+		//MasterModel.total++;
+		//id = MasterModel.total;	
+		}
+	
+	public MasterModel() {} //constructor vacío
 	
 	
 	//sobrecarga al contructor de arriba 
-	public MasterModel(int id, String nombreMaster, String domicilioMaster, String telMaster, String correoMaster,
-			String fotoMaster, String contrasena, String descripcion, String oficio) {
-		super();
-		this.nombreMaster = nombreMaster;
-		this.domicilioMaster = domicilioMaster;
-		this.telMaster = telMaster;
-		this.correoMaster = correoMaster;
-		this.fotoMaster = fotoMaster;
-		this.contrasena = contrasena;
-		this.descripcion = descripcion;
-		this.oficio = oficio;
-		MasterModel.total++;
-		id = MasterModel.total;	
-	}
+	//public MasterModel(int id, String nombreMaster, String domicilioMaster, String telMaster, String correoMaster,
+	//		String fotoMaster, String contrasena, String descripcion, String oficio) {
+	//	super();
+	//	this.nombreMaster = nombreMaster;
+	//	this.domicilioMaster = domicilioMaster;
+	//	this.telMaster = telMaster;
+	//	this.correoMaster = correoMaster;
+	//	this.fotoMaster = fotoMaster;
+	//	this.contrasena = contrasena;
+	//	this.descripcion = descripcion;
+	//	this.oficio = oficio;
+	//	MasterModel.total++;
+	//	id = MasterModel.total;	
+	//    }
 
 	
-	
-	
 	//getters y setter
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -143,10 +153,4 @@ public class MasterModel {
 				+ ", contrasena=" + contrasena + ", descripcion=" + descripcion + ", oficio=" + oficio + "]";
 	}
 
-
-	
-	
-	
-	
-	
 }
