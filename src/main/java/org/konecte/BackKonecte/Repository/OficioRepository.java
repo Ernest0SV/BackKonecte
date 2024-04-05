@@ -1,4 +1,4 @@
-package org.BackKonecte.Repository;
+package org.konecte.BackKonecte.Repository;
 
 import java.util.Optional;
 

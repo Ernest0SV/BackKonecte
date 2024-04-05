@@ -1,4 +1,4 @@
-package org.BackKonecte.Repository;
+package org.konecte.BackKonecte.Repository;
 
 import java.util.Optional;
 
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository <UsuarioModel, Long>  {
-	Optional<UsuarioModel> findByEmail(String email);
+	Optional<UsuarioModel> findBycorreoUsuario(String email);
 }

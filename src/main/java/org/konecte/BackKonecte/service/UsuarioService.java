@@ -2,7 +2,8 @@ package org.konecte.BackKonecte.service;
 //import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.BackKonecte.Repository.UsuarioRepository;
+
+import org.konecte.BackKonecte.Repository.UsuarioRepository;
 import org.konecte.BackKonecte.model.UsuarioModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class UsuarioService {
 	
 
 	public UsuarioModel addUsuarioModel(UsuarioModel usuario) { //Get es igual a add
-		Optional<UsuarioModel> tmpUsu = usuarioRepository.findByEmail(usuario.getCorreoUsuario());
+		Optional<UsuarioModel> tmpUsu = usuarioRepository.findBycorreoUsuario(usuario.getCorreoUsuario());
 		if (tmpUsu.isEmpty()) {
 			return usuarioRepository.save(usuario);
 		}else {

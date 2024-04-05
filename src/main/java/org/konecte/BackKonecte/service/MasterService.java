@@ -3,7 +3,8 @@ package org.konecte.BackKonecte.service;
 //import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.BackKonecte.Repository.MasterRepository;
+
+import org.konecte.BackKonecte.Repository.MasterRepository;
 import org.konecte.BackKonecte.model.MasterModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,7 +81,7 @@ public class MasterService {
 	} *///post
 	
 	public MasterModel addMasterModel (MasterModel master) {
-		Optional<MasterModel> tmpMaster= masterRepository.findByEmail(master.getCorreoMaster());
+		Optional<MasterModel> tmpMaster= masterRepository.findBycorreoMaster(master.getCorreoMaster());
 		if (tmpMaster.isEmpty()) {
 			return masterRepository.save(master);
 		}else {
@@ -106,10 +107,12 @@ public class MasterService {
 				if(contrasena.length()!=0) master.setContrasena(contrasena);
 				if(descripcion.length()!=0) master.setDescripcion(descripcion);
 				if(oficio.length()!=0) master.setOficio(oficio);
-				
+				masterRepository.save(master);
 				// tmpMast=master;
 				//break;
-			}//if ==
+			}
+				//if ==
+			
 		//}//foreach
 		return master;
 	}

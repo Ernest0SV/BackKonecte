@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.BackKonecte.Repository.OficioRepository;
+import org.konecte.BackKonecte.Repository.OficioRepository;
 import org.konecte.BackKonecte.model.MasterModel;
 import org.konecte.BackKonecte.model.OficioModel;
 import org.springframework.beans.factory.annotation.Autowired;
