@@ -1,6 +1,5 @@
 package org.konecte.BackKonecte.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.konecte.BackKonecte.model.UsuarioModel;
 import org.konecte.BackKonecte.service.UsuarioService;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 @RequestMapping(path="/api/usuarios/")
 
@@ -35,8 +33,8 @@ public class UsuarioController {
 	//GET
 	//este get es para traer un solo master
 	@GetMapping (path="{usuarios}") // http://localhost:8080/api/usuarios/1
-	public UsuarioModel getMaster(@PathVariable("usuarios") Long userId) {
-		return usuarioService.getUsuarioModel(userId);
+	public UsuarioModel getMaster(@PathVariable("usuarios") Long usuarioId) {
+		return usuarioService.getUsuarioModel(usuarioId);
 	}//get product
 	
 	//POST

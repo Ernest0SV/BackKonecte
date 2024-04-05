@@ -1,5 +1,4 @@
 package org.konecte.BackKonecte.controller;
-//import java.util.ArrayList;
 import java.util.List;
 import org.konecte.BackKonecte.model.OficioModel;
 import org.konecte.BackKonecte.service.OficioService;
@@ -31,25 +30,25 @@ public class OficioController {
 	//GET
 	//Trae solo un oficio
 	@GetMapping (path="{oficioId}")
-	public OficioModel getOficio(@PathVariable("oficioId")String oficioId) {
+	public OficioModel getOficio(@PathVariable("oficioId")Long oficioId) {
 		return oficioService.getOficioModel(oficioId);
 	}
 	
 	//POST
 	@PostMapping
 	public OficioModel addOficio(@RequestBody OficioModel oficio) {
-		return oficioService.addOficioModel(oficio);
+		return oficioService.addOficioModel(oficio); 
 	}//postOficio
 	
 	//PUT
 	@PutMapping(path="{oficioId}")//http://localhost:8080/api/oficios/1
-	public OficioModel updateOficio(@PathVariable("oficioId")String oficioId,
+	public OficioModel updateOficio(@PathVariable("oficioId")Long oficioId,
 	@RequestBody OficioModel oficio	) {
 		return oficioService.updateOficio(oficioId, oficio.getNombreOficio());
 }
 	//DELETE
 	@DeleteMapping (path="{masterId}")
-	public OficioModel deleteOficio(@PathVariable("oficioId")String oficioId) {
+	public OficioModel deleteOficio(@PathVariable("oficioId")Long oficioId) {
 		return oficioService.deleteOficioModel(oficioId);
 	}
 	

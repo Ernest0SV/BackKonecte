@@ -49,7 +49,7 @@ public class UsuarioService {
 		if (tmpUsu.isEmpty()) {
 			return usuarioRepository.save(usuario);
 		}else {
-			System.out.println("Ya existe el master con el correo [" +
+			System.out.println("Ya existe el usuario con el correo [" +
 		usuario.getCorreoUsuario() + "]");
 			return null;
 		}//if
@@ -66,7 +66,7 @@ public class UsuarioService {
 				if(telUsuario.length()!=0) usuario.setTelUsuario(telUsuario);
 				if(correoUsuario.length()!=0) usuario.setCorreoUsuario(correoUsuario);
 				if(contrasena.length()!=0) usuario.setContrasena(contrasena);
-				
+				usuarioRepository.save(usuario);
 				//tmpUsu=usuario;
 				//break;
 			}//if ==

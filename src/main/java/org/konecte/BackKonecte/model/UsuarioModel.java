@@ -13,12 +13,11 @@ public class UsuarioModel {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id", unique=true, nullable=false)	
-	
 	private Long id;
 	@Column(nullable=false)
 	private String nombreUsuario;
 	@Column(nullable=false)
-	private String   telUsuario;
+	private String telUsuario;
 	@Column(nullable=false)
 	private String correoUsuario;
 	@Column(nullable=false)
@@ -26,15 +25,12 @@ public class UsuarioModel {
 	// private static int total = 0;
 
 	//constructor vacio
-	public UsuarioModel() {
 	//	UsuarioModel.total++;
 	//	id = UsuarioModel.total;
-	}
 	 //constructor sin id, por el auroincremental
 	public UsuarioModel(String nombreUsuario, String telUsuario, String correoUsuario, String contrasena) {
 		super();
 		// this.id = id;
-		
 		this.nombreUsuario = nombreUsuario;
 		this.telUsuario = telUsuario;
 		this.correoUsuario = correoUsuario;
@@ -42,6 +38,8 @@ public class UsuarioModel {
 		//UsuarioModel.total++;
 		//id = UsuarioModel.total;
 	}
+	
+	public UsuarioModel() {}// constructor vacío
 	
 	/* Constructor con Id
 	public UsuarioModel(Long id, String nombreUsuario, String telUsuario, String correoUsuario, String contrasena) {
@@ -59,7 +57,7 @@ public class UsuarioModel {
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNombreUsuario() {

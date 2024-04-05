@@ -1,11 +1,9 @@
 package org.konecte.BackKonecte.service;
-
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.konecte.BackKonecte.Repository.OficioRepository;
-import org.konecte.BackKonecte.model.MasterModel;
+// import org.konecte.BackKonecte.model.MasterModel;
 import org.konecte.BackKonecte.model.OficioModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,14 +25,14 @@ public class OficioService {
 		return oficioRepository.findAll();
 	}// get all oficios
 	
-	public OficioModel getOficioModel (String oficioId) {
+	public OficioModel getOficioModel (Long oficioId) {
 		return oficioRepository.findById(oficioId).orElseThrow(
 				()-> new IllegalArgumentException("El oficio con el id ["+
 						oficioId + "] no existe")
 				);
 	}//get 1 oficio
 	
-	public OficioModel deleteOficioModel (String oficioId) {
+	public OficioModel deleteOficioModel (Long oficioId) {
 		OficioModel tmpOfi = null;
 		if(oficioRepository.existsById(oficioId)) {
 			tmpOfi = oficioRepository.findById(oficioId).get();
@@ -54,13 +52,13 @@ public class OficioService {
 		}//if
 	}// add/post 
 	
-	public OficioModel updateOficio(String oficioId, String nombreOficio) {
+	public OficioModel updateOficio(Long oficioId, String nombreOficio) {
 		OficioModel oficio = null;
 		//for (OficioModel oficio: list) {
 			if(oficioRepository.existsById(oficioId)){
 				oficio = oficioRepository.findById(oficioId).get();
-				
 				if(nombreOficio.length()!=0)oficio.setNombreOficio(nombreOficio);
+				oficioRepository.save(oficio);
 				
 				//tmpOfi=oficio;
 			//}break;
