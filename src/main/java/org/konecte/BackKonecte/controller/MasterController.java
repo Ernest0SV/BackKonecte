@@ -1,5 +1,4 @@
 package org.konecte.BackKonecte.controller;
-//import java.util.ArrayList;
 import java.util.List;
 import org.konecte.BackKonecte.model.MasterModel;
 import org.konecte.BackKonecte.service.MasterService;
@@ -33,7 +32,7 @@ public class MasterController {
 	@GetMapping (path="{masterId}") // http://localhost:8080/api/masters/1
 	public MasterModel getMaster(@PathVariable("masterId") Long masterId) {
 		return masterService.getMasterModel(masterId);
-	}//get product
+	}//get MASTER
 	
 	
 	/* //GET
