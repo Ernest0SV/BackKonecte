@@ -22,7 +22,7 @@ public class UsuarioController {
 	@Autowired
 	public UsuarioController(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
-	}
+	}//constructor
 	
 	//Para traer a todos los usuarios
 	@GetMapping		// http://localhost:8080/api/usuarios/

@@ -72,4 +72,15 @@ public class UsuarioService {
 		return tmpUsu;	
 	}//update
 
+	public boolean validateUsuario(UsuarioModel usuario) {
+		Optional<UsuarioModel>usuarioBycorreoUsuario=usuarioRepository.findBycorreoUsuario(usuario.getCorreoUsuario());
+		if (usuarioBycorreoUsuario.isPresent()) {
+			UsuarioModel tmpUsu = usuarioBycorreoUsuario.get();
+			if (usuario.getPassword().equals(tmpUsu.getPassword())){
+				
+			}//if
+		}//if isPresent
+		return false;
+	}//validateUser
+
 }// class UserService

@@ -9,5 +9,5 @@ public class Token {
 	}//constructor
 	public String getAccessToken() {
 		return accessToken;
-	}
+	}//getAccessToken
 }

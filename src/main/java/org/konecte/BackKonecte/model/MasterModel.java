@@ -60,10 +60,7 @@ public class MasterModel {
 		return id;
 	}
 
-<<<<<<< HEAD
-=======
 
->>>>>>> d3aec772823d663174305821d5c875e9e61ebdb4
 	public String getNombreMaster() {
 		return nombreMaster;
 	}
