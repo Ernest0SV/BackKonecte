@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.konecte.BackKonecte.Repository.UsuarioRepository;
+import org.konecte.BackKonecte.dto.ChangePassword;
 import org.konecte.BackKonecte.model.UsuarioModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,24 +56,20 @@ public class UsuarioService {
 		}//if
 	}// post o add
 
-	public UsuarioModel updateUsuarioModel(Long usuarioId, String nombreUsuario, String telUsuario, String correoUsuario,
-			String contrasena) {
-		UsuarioModel usuario = null;
-		
-		// for (//UsuarioModel : list) {	
-			if(usuarioRepository.existsById(usuarioId)) {
-				usuario = usuarioRepository.findById(usuarioId).get();
-				if(nombreUsuario.length()!=0) usuario.setNombreUsuario(nombreUsuario);
-				if(telUsuario.length()!=0) usuario.setTelUsuario(telUsuario);
-				if(correoUsuario.length()!=0) usuario.setCorreoUsuario(correoUsuario);
-				if(contrasena.length()!=0) usuario.setContrasena(contrasena);
-				usuarioRepository.save(usuario);
-				//tmpUsu=usuario;
-				//break;
-			}//if ==
-		//}//foreach
-		return usuario;
-	}
+	public UsuarioModel updateUsuarioModel(Long usuarioId, ChangePassword changePassword) {
+		UsuarioModel tmpUsu = null;
+		if(usuarioRepository.existsById(usuarioId)) {	
+			tmpUsu = usuarioRepository.findById(usuarioId).get();		
+			if (tmpUsu.getPassword().equals(changePassword.getPassword())){		
+				tmpUsu.setPassword(changePassword.getNpassword());
+				usuarioRepository.save(tmpUsu);
+			}else {
+				System.out.println("updateUsuario - el password del usuario [" +
+			tmpUsu.getId() + "] no coincide");
+			tmpUsu=null;
+		}//if equals
+	}// if exists by id
+		return tmpUsu;	
+	}//update
 
-
-}
+}// class UserService

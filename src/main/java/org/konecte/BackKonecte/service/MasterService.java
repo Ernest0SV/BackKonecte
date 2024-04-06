@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.konecte.BackKonecte.Repository.MasterRepository;
+import org.konecte.BackKonecte.dto.ChangePassword;
 import org.konecte.BackKonecte.model.MasterModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,32 +36,6 @@ public class MasterService {
 				);
 	}// get master
 
-	/*public MasterModel getMaster(Long masterId) {
-		MasterModel tmpMast = null;
-		for (masterRepository.existsById(masterId) master : list) {
-			if(master.getId() == masterId){
-				tmpMast=master;
-				break;
-			}//if ==
-		}//foreach
-		return tmpMast;
-	}//get master
-/*	public MasterModel getMasterByOficio(String oficio) {
-		// TODO Auto-generated method stub
-		return null;
-	} */
-	
-/*		public MasterModel deleteMaster(int masterId) {		
-			MasterModel tmpMast = null;
-			for (MasterModel master : list) {
-				if(master.getId() == masterId){
-					tmpMast=master;
-					list.remove(tmpMast); // borra el master en la lista
-					break;
-				}//if ==
-			}//foreach
-			return tmpMast;
-		} */ //deleteMaster
 
 	public MasterModel deleteMasterModel (Long masterId) {
 		MasterModel tmpMaster = null;
@@ -89,10 +64,10 @@ public class MasterService {
 		master.getCorreoMaster() + "]");
 			return null;
 		}// if
-	}// add/put product
+	}// add/post product
 	
 	//PUT-UPDATE
-	public MasterModel updateMasterMoodel(Long masterId, String nombreMaster, String domicilioMaster, String telMaster,
+/*	public MasterModel updateMasterMoodel(Long masterId, String nombreMaster, String domicilioMaster, String telMaster,
 			String correoMaster, String fotoMaster, String contrasena, String descripcion, String oficio) {
 		MasterModel master = null;
 		//for (MasterModel master : list) {
@@ -113,9 +88,27 @@ public class MasterService {
 			}
 				//if ==
 			
-		//}//foreach
+		//}//for each
 		return master;
-	}
+	} */
+
+
+	public MasterModel updateMasterMoodel(Long masterId, ChangePassword changePassword) {
+		MasterModel tmpMaster = null;
+		if(masterRepository.existsById(masterId)) {	
+			tmpMaster = masterRepository.findById(masterId).get();		
+			if (tmpMaster.getPassword().equals(changePassword.getPassword())){		
+				tmpMaster.setPassword(changePassword.getNpassword());
+				masterRepository.save(tmpMaster);
+			}else {
+				System.out.println("updateMaster - el password del master [" +
+			tmpMaster.getId() + "] no coincide");
+			tmpMaster=null;
+		}//if equals
+	}// if exists by id
+		return tmpMaster;
+		
+}//update master
 
 	
 }// class MasterService

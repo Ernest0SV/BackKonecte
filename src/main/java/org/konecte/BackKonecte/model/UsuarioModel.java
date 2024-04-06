@@ -22,19 +22,22 @@ public class UsuarioModel {
 	private String correoUsuario;
 	@Column(nullable=false)
 	private String contrasena;
+	@Column(nullable=false)
+	private String password;
 	// private static int total = 0;
 
 	//constructor vacio
 	//	UsuarioModel.total++;
 	//	id = UsuarioModel.total;
 	 //constructor sin id, por el auroincremental
-	public UsuarioModel(String nombreUsuario, String telUsuario, String correoUsuario, String contrasena) {
+	public UsuarioModel(String nombreUsuario, String telUsuario, String correoUsuario, String contrasena, String password) {
 		super();
 		// this.id = id;
 		this.nombreUsuario = nombreUsuario;
 		this.telUsuario = telUsuario;
 		this.correoUsuario = correoUsuario;
 		this.contrasena = contrasena;
+		this.password = password;
 		//UsuarioModel.total++;
 		//id = UsuarioModel.total;
 	}
@@ -54,12 +57,10 @@ public class UsuarioModel {
 	} */
 	
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
@@ -85,6 +86,21 @@ public class UsuarioModel {
 		this.contrasena = contrasena;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "UsuarioModel [id=" + id + ", nombreUsuario=" + nombreUsuario + ", telUsuario=" + telUsuario
+				+ ", correoUsuario=" + correoUsuario + ", contrasena=" + contrasena + ", password=" + password + "]";
+	}
+	
 	//public static int getTotal() {
 	//	return total;
 	//}
@@ -92,11 +108,6 @@ public class UsuarioModel {
 		UsuarioModel.total = total;
 	} */
 	
-	@Override
-	public String toString() {
-		return "UsuarioModel [id=" + id + ", nombreUsuario=" + nombreUsuario + ", telUsuario=" + telUsuario
-				+ ", correoUsuario=" + correoUsuario + ", contrasena=" + contrasena + "]";
-	}
 	
 
 	

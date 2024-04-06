@@ -1,6 +1,7 @@
 package org.konecte.BackKonecte.controller;
-
 import java.util.List;
+
+import org.konecte.BackKonecte.dto.ChangePassword;
 import org.konecte.BackKonecte.model.UsuarioModel;
 import org.konecte.BackKonecte.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +48,8 @@ public class UsuarioController {
 	//PUT 2
 	@PutMapping(path="{usuarioId}")  //http://localhost:8080/api/usuarios/1
 	public UsuarioModel updateUsuario(@PathVariable("usuarioId") Long usuarioId,
-	@RequestBody UsuarioModel usuario) {
-					
-	//El put es similar al update
-	return usuarioService.updateUsuarioModel(usuarioId, usuario.getNombreUsuario(), //Regresa todos los datos que previamente declare en el archivo de controller
-	usuario.getTelUsuario(),usuario.getCorreoUsuario(),usuario.getContrasena());
+	@RequestBody ChangePassword changePassword) {
+	return usuarioService.updateUsuarioModel(usuarioId, changePassword); //Regresa todos los datos que previamente declare en el archivo de controller
 	}//put master
 		
 		

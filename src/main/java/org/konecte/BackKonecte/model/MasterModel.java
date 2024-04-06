@@ -31,11 +31,13 @@ public class MasterModel {
 	private String descripcion;
 	@Column(nullable=false)
 	private String oficio;
+	@Column(nullable=false)
+	private String password;
 	
 
 	//constructor sin id, por el autoincremental	
 	public MasterModel(String nombreMaster, String domicilioMaster, String telMaster, String correoMaster,
-			String fotoMaster, String contrasena, String descripcion, String oficio) {
+			String fotoMaster, String contrasena, String descripcion, String oficio, String password) {
 		super();
 		this.nombreMaster = nombreMaster;
 		this.domicilioMaster = domicilioMaster;
@@ -45,6 +47,7 @@ public class MasterModel {
 		this.contrasena = contrasena;
 		this.descripcion = descripcion;
 		this.oficio = oficio;
+		this.password = password;
 		//MasterModel.total++;
 		//id = MasterModel.total;	
 		}
@@ -70,12 +73,8 @@ public class MasterModel {
 
 	
 	//getters y setter
-	public long getId() {
+	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNombreMaster() {
@@ -141,15 +140,23 @@ public class MasterModel {
 	public void setOficio(String oficio) {
 		this.oficio = oficio;
 	}
+		
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-	
-	
-	//toString
 	@Override
 	public String toString() {
 		return "MasterModel [id=" + id + ", nombreMaster=" + nombreMaster + ", domicilioMaster=" + domicilioMaster
 				+ ", telMaster=" + telMaster + ", correoMaster=" + correoMaster + ", fotoMaster=" + fotoMaster
-				+ ", contrasena=" + contrasena + ", descripcion=" + descripcion + ", oficio=" + oficio + "]";
-	}
+				+ ", contrasena=" + contrasena + ", descripcion=" + descripcion + ", oficio=" + oficio + ", password="
+				+ password + "]";
+	} //toString
+	
+
 
 }

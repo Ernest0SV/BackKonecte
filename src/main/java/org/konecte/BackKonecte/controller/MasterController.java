@@ -1,5 +1,7 @@
 package org.konecte.BackKonecte.controller;
 import java.util.List;
+
+import org.konecte.BackKonecte.dto.ChangePassword;
 import org.konecte.BackKonecte.model.MasterModel;
 import org.konecte.BackKonecte.service.MasterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,12 +55,11 @@ public class MasterController {
 	//PUT 2
 	@PutMapping(path="{masterId}")  //http://localhost:8080/api/masters/1
 	public MasterModel updateMaster(@PathVariable("masterId") Long masterId,
-	@RequestBody MasterModel master) {
-				
-		return masterService.updateMasterMoodel(masterId, master.getNombreMaster(),
-				master.getDomicilioMaster(), master.getTelMaster(),
-				master.getCorreoMaster(),master.getFotoMaster(),master.getContrasena(),
-				master.getDescripcion(),master.getOficio());
+	@RequestBody ChangePassword changePassword) {			
+		return masterService.updateMasterMoodel(masterId, changePassword);				
+				//master.getDomicilioMaster(), master.getTelMaster(),
+				//master.getCorreoMaster(),master.getFotoMaster(),master.getContrasena(),
+				//master.getDescripcion(),master.getOficio());
 		}//put master
 	
 	
