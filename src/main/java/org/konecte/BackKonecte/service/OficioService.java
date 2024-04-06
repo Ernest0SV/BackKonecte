@@ -42,15 +42,11 @@ public class OficioService {
 		}//delete
 	
 	public OficioModel addOficioModel(OficioModel oficio) {
-		Optional<OficioModel> tmpOfi= oficioRepository.findById(oficio.getNombreOficio());		
-		if (tmpOfi.isEmpty()) {
+		
 			return oficioRepository.save(oficio);
-		}else {
-			System.out.println("Ya existe el master con el correo [" +
-		oficio.getNombreOficio() + "]");
-			return null;
+		
 		}//if
-	}// add/post 
+	// add/post 
 	
 	public OficioModel updateOficio(Long oficioId, String nombreOficio) {
 		OficioModel oficio = null;

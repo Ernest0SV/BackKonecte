@@ -29,10 +29,7 @@ public class OficioModel {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public String getNombreOficio() {
 		return nombreOficio;
 	}

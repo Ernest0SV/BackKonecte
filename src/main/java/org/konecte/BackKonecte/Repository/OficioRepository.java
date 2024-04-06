@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OficioRepository extends JpaRepository <OficioModel, Long> {
-	Optional<OficioModel> findById(String Id);
+	//Optional<OficioModel> findById(String Id);
 }
 
