@@ -52,31 +52,11 @@ public class MasterModel {
 	public MasterModel() {} //constructor vacío
 	
 	
-	//sobrecarga al contructor de arriba 
-	//public MasterModel(int id, String nombreMaster, String domicilioMaster, String telMaster, String correoMaster,
-	//		String fotoMaster, String contrasena, String descripcion, String oficio) {
-	//	super();
-	//	this.nombreMaster = nombreMaster;
-	//	this.domicilioMaster = domicilioMaster;
-	//	this.telMaster = telMaster;
-	//	this.correoMaster = correoMaster;
-	//	this.fotoMaster = fotoMaster;
-	//	this.contrasena = contrasena;
-	//	this.descripcion = descripcion;
-	//	this.oficio = oficio;
-	//	MasterModel.total++;
-	//	id = MasterModel.total;	
-	//    }
-
-	
 	//getters y setter
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getNombreMaster() {
 		return nombreMaster;

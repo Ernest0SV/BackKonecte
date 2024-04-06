@@ -17,23 +17,19 @@ public class OficioModel {
 	@Column(nullable=false)
 	private String nombreOficio;
 
-	public OficioModel(long id, String nombreOficio) {
+	public OficioModel(String nombreOficio) {
 		super();
-		this.id = id;
 		this.nombreOficio = nombreOficio;
 	}//constructor
 	
 	public OficioModel() {}//constructor vacio
 	
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public String getNombreOficio() {
 		return nombreOficio;
 	}
