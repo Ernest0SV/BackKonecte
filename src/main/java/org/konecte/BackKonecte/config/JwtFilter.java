@@ -27,10 +27,10 @@ public class JwtFilter extends GenericFilterBean{
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		String authHeader =  httpServletRequest.getHeader("authorization");
 		if (  (("POST".equals(httpServletRequest.getMethod())) && 
-				(! httpServletRequest.getRequestURI().contains("/api/users/") )  )  
+				(! httpServletRequest.getRequestURI().contains("/api/usuarios/") )  )  
 				||
 				( ("GET".equals(httpServletRequest.getMethod())) && 
-						(! httpServletRequest.getRequestURI().contains("/api/products/") )  ) ||
+						(! httpServletRequest.getRequestURI().contains("/api/oficio/") )  ) ||
 			  ("PUT".equals(httpServletRequest.getMethod())) ||
 			  ("DELETE".equals(httpServletRequest.getMethod()))
 			) { 

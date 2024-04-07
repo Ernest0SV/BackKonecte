@@ -33,7 +33,7 @@ public class LoginController {
 			System.out.println("Usuario válido " + usuario.getCorreoUsuario());
 			return new Token("");
 		}//if
-		throw new ServletException("Nombre de usuario o contraseña incorrectos " + usuario.getCorreoUsuario());
+		throw new ServletException("Correo de usuario o contraseña incorrectos " + usuario.getCorreoUsuario());
 	}//loginUser
 	
 	private String generateToken(String username) {
