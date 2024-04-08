@@ -15,11 +15,7 @@ public class UsuarioService {
 	public final UsuarioRepository usuarioRepository ;
 	@Autowired
 	public UsuarioService(UsuarioRepository usuarioRepository) {
-	/*	list.add( new UsuarioModel("Ernesto Sepulveda",  "5545400686", "ernesto@hotmail.com", "Contrasena1$") );
-		list.add( new UsuarioModel("Abraham Ruiz","5467895649", "abraham@hotmail.com", "Contrasena1$") );
-		list.add( new UsuarioModel("Eduardo Diaz","6787456790", "eduardo@hotmail.com","Contrasena1$") );
-		list.add( new UsuarioModel("Joel Solis","4567892345", "joel@hotmail.com","Contrasena1$") );
-	*/	
+	
 		this.usuarioRepository = usuarioRepository;
 	}//constructor
 	
@@ -77,7 +73,8 @@ public class UsuarioService {
 		if (usuarioBycorreoUsuario.isPresent()) {
 			UsuarioModel tmpUsu = usuarioBycorreoUsuario.get();
 			if (usuario.getPassword().equals(tmpUsu.getPassword())){
-				
+				 return true; // Retorna true si la contraseña coincide
+
 			}//if
 		}//if isPresent
 		return false;
