@@ -31,7 +31,7 @@ public class LoginController {
 	public Token loginUsuario(@RequestBody UsuarioModel usuario) throws ServletException {
 		if (usuarioService.validateUsuario(usuario)) {
 			System.out.println("Usuario válido " + usuario.getCorreoUsuario());
-			return new Token("");
+			return new Token(generateToken(usuario.getCorreoUsuario()));
 		}//if
 		throw new ServletException("Correo de usuario o contraseña incorrectos " + usuario.getCorreoUsuario());
 	}//loginUser

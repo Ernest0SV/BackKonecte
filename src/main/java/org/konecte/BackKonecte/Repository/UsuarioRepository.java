@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository <UsuarioModel, Long>  {
-	Optional<UsuarioModel> findBycorreoUsuario(String correoUsuario);
+	Optional<UsuarioModel> findBycorreoUsuario(String correoUsuario); //Se cambio  correoUsuario por CorreoUsuario
 }
