@@ -24,12 +24,7 @@ public class UsuarioModel {
 	private String contrasena;
 	@Column(nullable=false)
 	private String password;
-	// private static int total = 0;
-
-	//constructor vacio
-	//	UsuarioModel.total++;
-	//	id = UsuarioModel.total;
-	 //constructor sin id, por el auroincremental
+	
 	public UsuarioModel(String nombreUsuario, String telUsuario, String correoUsuario, String contrasena, String password) {
 		super();
 		// this.id = id;
@@ -43,19 +38,6 @@ public class UsuarioModel {
 	}
 	
 	public UsuarioModel() {}// constructor vacío
-	
-	/* Constructor con Id
-	public UsuarioModel(Long id, String nombreUsuario, String telUsuario, String correoUsuario, String contrasena) {
-		super();
-		// this.id = id;
-		this.nombreUsuario = nombreUsuario;
-		this.telUsuario = telUsuario;
-		this.correoUsuario = correoUsuario;
-		this.contrasena = contrasena;
-		//UsuarioModel.total++;
-		//id = UsuarioModel.total;
-	} */
-	
 	
 	public Long getId() {
 		return id;

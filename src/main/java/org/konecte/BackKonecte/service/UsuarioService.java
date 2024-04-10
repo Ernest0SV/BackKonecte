@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
 	public final UsuarioRepository usuarioRepository ; //posiblemente haya que cambiarlo por private final 00:24:27 v2
 	@Autowired
-	private PasswordEncoder passwordEcoder;
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	public UsuarioService(UsuarioRepository usuarioRepository) {
@@ -46,6 +46,7 @@ public class UsuarioService {
 	public UsuarioModel addUsuarioModel(UsuarioModel usuario) { //Get es igual a add
 		Optional<UsuarioModel> tmpUsu = usuarioRepository.findBycorreoUsuario(usuario.getCorreoUsuario());
 		if (tmpUsu.isEmpty()) {
+			usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 			return usuarioRepository.save(usuario);
 		}else {
 			System.out.println("Ya existe el usuario con el correo [" +
@@ -53,13 +54,14 @@ public class UsuarioService {
 			return usuario;
 		}//if
 	}// post o add
+	
 
 	public UsuarioModel updateUsuarioModel(Long usuarioId, ChangePassword changePassword) {
 		UsuarioModel tmpUsu = null;
 		if(usuarioRepository.existsById(usuarioId)) {
-			tmpUsu = usuarioRepository.findById(usuarioId).get();		
-			if (tmpUsu.getPassword().equals(changePassword.getPassword())){		
-				tmpUsu.setPassword(changePassword.getNpassword());
+			tmpUsu = usuarioRepository.findById(usuarioId).get();	
+			if(passwordEncoder.matches(changePassword.getPassword(), tmpUsu.getPassword())) {	
+				tmpUsu.setPassword(passwordEncoder.encode(changePassword.getNpassword()));
 				usuarioRepository.save(tmpUsu);
 			}else {
 				System.out.println("updateUsuario - el password del usuario [" +
@@ -74,7 +76,9 @@ public class UsuarioService {
 		Optional<UsuarioModel>usuarioBycorreoUsuario=usuarioRepository.findBycorreoUsuario(usuario.getCorreoUsuario());
 		if (usuarioBycorreoUsuario.isPresent()) {
 			UsuarioModel tmpUsu = usuarioBycorreoUsuario.get();
-			if (usuario.getPassword().equals(tmpUsu.getPassword())){
+			//if (usuario.getPassword().equals(tmpUsu.getPassword())){
+			if(passwordEncoder.matches (usuario.getPassword(), tmpUsu.getPassword())) {
+				
 				 return true; // Retorna true si la contraseña coincide
 
 			}//if
