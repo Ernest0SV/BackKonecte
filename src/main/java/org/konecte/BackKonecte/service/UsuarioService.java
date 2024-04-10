@@ -39,11 +39,10 @@ public class UsuarioService {
 		if(usuarioRepository.existsById(usuarioId) ) {
 			tmpUsu = usuarioRepository.findById(usuarioId).get();
 			usuarioRepository.deleteById(usuarioId);
-		}//if 
+		}//if  existById
 		return tmpUsu;
-	}// delete
+	}// deleteUser
 	
-
 	public UsuarioModel addUsuarioModel(UsuarioModel usuario) { //Get es igual a add
 		Optional<UsuarioModel> tmpUsu = usuarioRepository.findBycorreoUsuario(usuario.getCorreoUsuario());
 		if (tmpUsu.isEmpty()) {
@@ -51,13 +50,13 @@ public class UsuarioService {
 		}else {
 			System.out.println("Ya existe el usuario con el correo [" +
 		usuario.getCorreoUsuario() + "]");
-			return null;
+			return usuario;
 		}//if
 	}// post o add
 
 	public UsuarioModel updateUsuarioModel(Long usuarioId, ChangePassword changePassword) {
 		UsuarioModel tmpUsu = null;
-		if(usuarioRepository.existsById(usuarioId)) {	
+		if(usuarioRepository.existsById(usuarioId)) {
 			tmpUsu = usuarioRepository.findById(usuarioId).get();		
 			if (tmpUsu.getPassword().equals(changePassword.getPassword())){		
 				tmpUsu.setPassword(changePassword.getNpassword());
@@ -66,8 +65,8 @@ public class UsuarioService {
 				System.out.println("updateUsuario - el password del usuario [" +
 			tmpUsu.getId() + "] no coincide");
 			tmpUsu=null;
-		}//if equals
-	}// if exists by id
+		}//if 
+	}// if 
 		return tmpUsu;	
 	}//update
 
