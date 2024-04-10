@@ -7,12 +7,15 @@ import org.konecte.BackKonecte.Repository.UsuarioRepository;
 import org.konecte.BackKonecte.dto.ChangePassword;
 import org.konecte.BackKonecte.model.UsuarioModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
+	public final UsuarioRepository usuarioRepository ; //posiblemente haya que cambiarlo por private final 00:24:27 v2
+	@Autowired
+	private PasswordEncoder passwordEcoder;
 	
-	public final UsuarioRepository usuarioRepository ;
 	@Autowired
 	public UsuarioService(UsuarioRepository usuarioRepository) {
 	
